@@ -125,13 +125,21 @@ date_default_timezone_set('Asia/Jakarta');
             <?php
             $d = $sis->num_rows();
             $d2 = $sis2->num_rows();
-            if (empty($d) or empty($d2)) {
-              echo '<a href="#" class="btn btn-lg btn-primary btn-block" disabled>Raport Belum di Upload</a>';
-            } else {
+            if (!empty($d) && !empty($d2)) {
               $dt = $sis->row_array();
               $dt2 = $sis2->row_array();
               echo '<a href="' . base_url("siswa/download/") . $dt["nis"] . '/' . $dt['LinkRaport'] . '" class="btn btn-lg btn-primary btn-block">Download Raport Akademik</a>';
               echo '<a href="' . base_url("siswa/download/") . $dt2["nis"] . '/' . $dt2['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Raport Speaking</a>';
+            } else if (!empty($d) && empty($d2)) {
+              $dt = $sis->row_array();
+              echo '<a href="' . base_url("siswa/download/") . $dt["nis"] . '/' . $dt['LinkRaport'] . '" class="btn btn-lg btn-primary btn-block">Download Raport Akademik</a>';
+              echo '<a href="#" class="btn btn-lg btn-default btn-block" disabled>Raport Speaker Belum diupload</a>';
+            } elseif (empty($d) && !empty($d2)) {
+              $dt2 = $sis2->row_array();
+              echo '<a href="' . base_url("siswa/download/") . $dt2["nis"] . '/' . $dt2['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Raport Speaking</a>';
+              echo '<a href="#" class="btn btn-lg btn-default btn-block" disabled>Raport Akademik Belum diupload</a>';
+            } else {
+              echo '<a href="#" class="btn btn-lg btn-primary btn-block" disabled>Belum ada rapor yang diupload</a>';
             }
             ?>
             <a href="<?php echo base_url('siswa/logout'); ?>" class="btn btn-lg btn-danger btn-block">Logout</a>
