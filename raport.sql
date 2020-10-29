@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Okt 2020 pada 14.51
+-- Waktu pembuatan: 29 Okt 2020 pada 23.24
 -- Versi server: 10.4.10-MariaDB
 -- Versi PHP: 7.3.12
 
@@ -44,6 +44,21 @@ CREATE TABLE `file` (
 --
 
 CREATE TABLE `file_rapor2` (
+  `IDLink` int(11) NOT NULL,
+  `kode_rapor` int(11) NOT NULL,
+  `nis` char(20) NOT NULL,
+  `LinkRaport` varchar(255) NOT NULL,
+  `StatusDownload` enum('B','L') NOT NULL,
+  `jam_download` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `file_rapor3`
+--
+
+CREATE TABLE `file_rapor3` (
   `IDLink` int(11) NOT NULL,
   `kode_rapor` int(11) NOT NULL,
   `nis` char(20) NOT NULL,
@@ -173,6 +188,12 @@ ALTER TABLE `file_rapor2`
   ADD PRIMARY KEY (`IDLink`);
 
 --
+-- Indeks untuk tabel `file_rapor3`
+--
+ALTER TABLE `file_rapor3`
+  ADD PRIMARY KEY (`IDLink`);
+
+--
 -- Indeks untuk tabel `jenis_rapor`
 --
 ALTER TABLE `jenis_rapor`
@@ -208,10 +229,16 @@ ALTER TABLE `file_rapor2`
   MODIFY `IDLink` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `file_rapor3`
+--
+ALTER TABLE `file_rapor3`
+  MODIFY `IDLink` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `jenis_rapor`
 --
 ALTER TABLE `jenis_rapor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
