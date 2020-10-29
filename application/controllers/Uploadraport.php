@@ -20,6 +20,9 @@ class Uploadraport extends CI_Controller
 
         $data['sisw2'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from file_rapor2 where siswa.nis=file_rapor2.nis) order by nis ASC");
         $data['fil2'] = $this->db->query("select*from file_rapor2,siswa where file_rapor2.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by file_rapor2.nis ASC");
+
+        $data['sisw3'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from file_rapor3 where siswa.nis=file_rapor3.nis) order by nis ASC");
+        $data['fil3'] = $this->db->query("select*from file_rapor3,siswa where file_rapor3.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by file_rapor3.nis ASC");
         $this->load->view('uploadraport', $data);
     }
     public function download()

@@ -34,6 +34,16 @@ class Bagianadmin extends CI_Controller
         $this->session->set_userdata('kode_rapor', 0);
         $this->load->view('walikelas/untukadmin', $data);
     }
+    public function alquran()
+    {
+        $uri3 = $this->session->userdata('Kelas');
+        $data['sisw'] = $this->db->query("select*from siswa where Kelas='" . $uri3 . "' AND NOT EXISTS(select*from file_rapor3 where siswa.nis=file_rapor3.nis) order by nis ASC");
+        $data['fil'] = $this->db->query("select*from file_rapor3,siswa where file_rapor3.nis=siswa.nis AND siswa.Kelas='" . $uri3 . "' order by file_rapor3.nis ASC");
+        $this->session->set_userdata('kode_rapor', 2);
+        $data['title'] = 'Raport Al Quran';
+        $this->session->set_userdata('kode_rapor', 2);
+        $this->load->view('walikelas/untukadmin', $data);
+    }
 
     public function logout()
     {
@@ -50,10 +60,12 @@ class Bagianadmin extends CI_Controller
             redirect('walikelas/bagianadmin');
         }
 
-        if ($kode_rapor !== 1) {
-            $namaRapor = "Rapor Speaking";
-        } else {
+        if ($kode_rapor == 1) {
             $namaRapor = "Rapor Akademik";
+        } else if ($kode_rapor == 2) {
+            $namaRapor = "Rapor Al Quran";
+        } else {
+            $namaRapor = "Rapor Speaking";
         }
 
 
@@ -73,18 +85,23 @@ class Bagianadmin extends CI_Controller
             $data['file'] = $upload_data['file_name'];
             $filenya = $data['file'];
 
-            if ($kode_rapor !== 1) {
-                $kode_rapor = 0;
+            if ($kode_rapor == 0) {
+
                 $this->db->insert('file_rapor2', ['nis' => $dacak, 'kode_rapor' => $kode_rapor, 'LinkRaport' => $filenya, 'StatusDownload' => 'B']);
                 $this->session->set_flashdata('notif', '<div class="alert alert-success"><b>PROSES UPLOAD BERHASIL!</b> <br/>Raport Atas Nama <B>' . $d2 . '<B/> berhasil di Upload!</div>');
                 echo $this->session->set_flashdata('msg', 'success');
                 redirect('walikelas/bagianadmin/speaking');
-            } else {
+            } else if ($kode_rapor == 1) {
 
                 $this->db->insert('file', ['nis' => $dacak, 'kode_rapor' => $kode_rapor, 'LinkRaport' => $filenya, 'StatusDownload' => 'B']);
                 $this->session->set_flashdata('notif', '<div class="alert alert-success"><b>PROSES UPLOAD BERHASIL!</b> <br/>Raport Atas Nama <B>' . $d2 . '<B/> berhasil di Upload!</div>');
                 echo $this->session->set_flashdata('msg', 'success');
                 redirect('walikelas/bagianadmin');
+            } else {
+                $this->db->insert('file_rapor3', ['nis' => $dacak, 'kode_rapor' => $kode_rapor, 'LinkRaport' => $filenya, 'StatusDownload' => 'B']);
+                $this->session->set_flashdata('notif', '<div class="alert alert-success"><b>PROSES UPLOAD BERHASIL!</b> <br/>Raport Atas Nama <B>' . $d2 . '<B/> berhasil di Upload!</div>');
+                echo $this->session->set_flashdata('msg', 'success');
+                redirect('walikelas/bagianadmin/alquran');
             }
         }
     }

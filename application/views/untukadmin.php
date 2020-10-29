@@ -56,11 +56,14 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
         $k1 = $this->db->query("select*from file_rapor2,siswa where file_rapor2.nis=siswa.nis order by file_rapor2.nis ASC")->num_rows();
         $k3 = $this->db->query("select*from file_rapor2,siswa where file_rapor2.nis=siswa.nis AND file_rapor2.StatusDownload='L' order by file_rapor2.nis ASC")->num_rows();
 
+        $l1 = $this->db->query("select*from file_rapor3,siswa where file_rapor3.nis=siswa.nis order by file_rapor3.nis ASC")->num_rows();
+        $l3 = $this->db->query("select*from file_rapor3,siswa where file_rapor3.nis=siswa.nis AND file_rapor3.StatusDownload='L' order by file_rapor3.nis ASC")->num_rows();
+
         ?>
         <ol class="breadcrumb">
           <li style="font-size: 16px;">Total Siswa : <?php echo $j; ?> </li>
-          <li style="font-size: 16px;">Total File : <?php echo $j1 + $k1; ?> </li>
-          <li style="font-size: 16px; color: blue;">Download File : <?php echo $j3 + $k3; ?> </li>
+          <li style="font-size: 16px;">Total File : <?php echo $j1 + $k1 + $l1; ?> </li>
+          <li style="font-size: 16px; color: blue;">Download File : <?php echo $j3 + $k3 + $l3; ?> </li>
         </ol>
       </section>
 
@@ -180,6 +183,76 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
                   foreach ($dgg as $kee) {
                     $jsiss = $this->db->get_where('siswa', ['Kelas' => $kee['Kelas']])->num_rows();
                     $jupll = $this->db->query("select*from file_rapor2,siswa where file_rapor2.nis=siswa.nis AND siswa.Kelas='" . $kee['Kelas'] . "' AND file_rapor2.StatusDownload='L' order by file_rapor2.nis ASC")->num_rows();
+                    $perss = ($jupll / $jsiss) * 100;
+                    $persee = number_format($perss, 2, ",", ".");
+                  ?>
+                    <div class="progress-group">
+                      <span class="progress-text">
+                        Kelas : <?php echo $kee['Kelas']; ?>
+                      </span>
+                      <span class="progress-number"><b><?php echo $jupll; ?></b>/<?php echo $jsiss;
+                                                                                  echo " ($persee %)"; ?></span>
+
+                      <div class="progress sm">
+                        <div class="progress-bar progress-bar-blue" style="width: <?php echo ($jupll / $jsiss) * 100; ?>%"></div>
+                      </div>
+                    </div>
+                  <?php } ?>
+                </div>
+
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="box">
+              <div class="box-header pl-3">
+                <h4>
+                  DATA RAPOR Al Qur'an
+                  <small></small>
+                </h4>
+              </div>
+
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div class="col-md-6">
+                  <h4 style="font-weight:bold;"><span class="fa fa-upload"></span> POGRES UPLOAD</h4>
+                  <hr />
+                  <?php
+                  $dg = $this->db->query('select Kelas from siswa group by Kelas')->result_array();
+                  foreach ($dg as $ke) {
+                    $jsis = $this->db->get_where('siswa', ['Kelas' => $ke['Kelas']])->num_rows();
+                    $jupl = $this->db->query("select*from file_rapor3,siswa where file_rapor3.nis=siswa.nis AND siswa.Kelas='" . $ke['Kelas'] . "' order by file_rapor3.nis ASC")->num_rows();
+                    $pers = ($jupl / $jsis) * 100;
+                    $perse = number_format($pers, 2, ",", ".");
+                  ?>
+                    <div class="progress-group">
+                      <span class="progress-text">
+                        Kelas : <?php echo $ke['Kelas']; ?>
+                      </span>
+                      <span class="progress-number"><b><?php echo $jupl; ?></b>/<?php echo $jsis;
+                                                                                echo " ($perse %)"; ?></span>
+
+                      <div class="progress sm">
+                        <div class="progress-bar progress-bar-green" style="width: <?php echo ($jupl / $jsis) * 100; ?>%"></div>
+                      </div>
+                    </div>
+                  <?php } ?>
+                </div>
+
+                <div class="col-md-6">
+                  <h4 style="font-weight:bold;"><span class="fa fa-download"></span> POGRES DOWNLOAD</h4>
+                  <hr />
+                  <?php
+                  $dgg = $this->db->query('select Kelas from siswa group by Kelas')->result_array();
+                  foreach ($dgg as $kee) {
+                    $jsiss = $this->db->get_where('siswa', ['Kelas' => $kee['Kelas']])->num_rows();
+                    $jupll = $this->db->query("select*from file_rapor3,siswa where file_rapor3.nis=siswa.nis AND siswa.Kelas='" . $kee['Kelas'] . "' AND file_rapor3.StatusDownload='L' order by file_rapor3.nis ASC")->num_rows();
                     $perss = ($jupll / $jsiss) * 100;
                     $persee = number_format($perss, 2, ",", ".");
                   ?>

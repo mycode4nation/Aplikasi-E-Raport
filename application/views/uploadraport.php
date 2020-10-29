@@ -147,7 +147,7 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
                   <div class="box">
                     <div class="box-header">
                       <h4>
-                        RAPOR SPEAKER
+                        RAPOR SPEAKING
                       </h4>
                     </div>
                     <!-- /.box-header -->
@@ -165,7 +165,7 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
                         </thead>
                         <?php
                         $no = 1;
-                        foreach ($sisw->result_array() as $ke) { ?>
+                        foreach ($sisw2->result_array() as $ke) { ?>
                           <tr>
                             <td><?php echo $no; ?></td>
                             <td><?php echo $ke['nis']; ?></td>
@@ -211,6 +211,77 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
                 <!-- /.col -->
               </div>
               <!-- /.row -->
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="box">
+                    <div class="box">
+                      <div class="box-header">
+                        <h4>
+                          RAPOR Al QUR'AN
+                        </h4>
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body">
+                        <?php echo $this->session->flashdata('notif') ?>
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <td>NO</td>
+                              <td>NIS</td>
+                              <td>Nama Lngkap</td>
+                              <td>Status Upload</td>
+                              <td>Status Download</td>
+                            </tr>
+                          </thead>
+                          <?php
+                          $no = 1;
+                          foreach ($sisw3->result_array() as $ke) { ?>
+                            <tr>
+                              <td><?php echo $no; ?></td>
+                              <td><?php echo $ke['nis']; ?></td>
+                              <td><?php echo $ke['NamaLengkap']; ?></td>
+                              <td><span class="fa fa-exclamation-triangle" style="color:red"> Belum Upload</span></td>
+                              <td><span class="fa fa-exclamation-triangle" style="color:red"> KOSONG</span></td>
+                            </tr>
+                          <?php
+                            $no++;
+                          }
+                          ?>
+                          <?php
+                          $no = 1;
+                          foreach ($fil3->result_array() as $de) { ?>
+                            <tr>
+                              <td><?php echo $no; ?></td>
+                              <td><?php echo $de['nis']; ?></td>
+                              <td><?php echo $de['NamaLengkap']; ?></td>
+                              <td><span class="fa fa-check" style="color:blue"> Berhasil Upload </span></td>
+                              <td>
+                                <?php
+                                if ($de['StatusDownload'] == 'B') {
+                                  echo '<span class="fa fa-exclamation-triangle" style="color:red"> <a href="' . base_url('uploadraport/download/') . $de["LinkRaport"] . '">Siswa Belum Download</a> </span>';
+                                } else {
+                                  echo '<span class="fa fa-check" style="color:blue"> <a href="' . base_url('uploadraport/download/') . $de["LinkRaport"] . '">di Download Pada ' . $de["jam_download"] . '</a> </span>';
+                                }
+                                ?>
+                              </td>
+                            </tr>
+                          <?php
+                            $no++;
+                          }
+                          ?>
+
+                        </table>
+
+
+                      </div>
+                      <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
 
 
 
