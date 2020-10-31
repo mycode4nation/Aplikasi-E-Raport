@@ -131,13 +131,13 @@ date_default_timezone_set('Asia/Jakarta');
               $dt2 = $sis2->row_array();
               $dt3 = $sis3->row_array();
               echo '<a href="' . base_url("siswa/download/") . $dt["nis"] . '/' . $dt['LinkRaport'] . '" class="btn btn-lg btn-primary btn-block">Download Raport Akademik</a>';
-              echo '<a href="' . base_url("siswa/download/") . $dt2["nis"] . '/' . $dt2['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Raport Speaking</a>';
+              // echo '<a href="' . base_url("siswa/download/") . $dt2["nis"] . '/' . $dt2['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Raport Speaking</a>';
               echo '<a href="' . base_url("siswa/download/") . $dt3["nis"] . '/' . $dt3['LinkRaport'] . '" class="btn btn-lg btn-warning btn-block">Download Raport Al Aquran</a>';
             } else if (!empty($d) && !empty($d2) && empty($d3)) {
               $dt = $sis->row_array();
               $dt2 = $sis->row_array();
               echo '<a href="' . base_url("siswa/download/") . $dt["nis"] . '/' . $dt['LinkRaport'] . '" class="btn btn-lg btn-primary btn-block">Download Raport Akademik</a>';
-              echo '<a href="' . base_url("siswa/download/") . $dt2["nis"] . '/' . $dt2['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Raport Speaking</a>';
+              // echo '<a href="' . base_url("siswa/download/") . $dt2["nis"] . '/' . $dt2['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Raport Speaking</a>';
               echo '<a href="#" class="btn btn-lg btn-default btn-block" disabled>Raport Al Quran Belum diupload</a>';
             } elseif (!empty($d) && empty($d2) && empty($d3)) {
               $dt = $sis->row_array();
@@ -153,7 +153,7 @@ date_default_timezone_set('Asia/Jakarta');
             } elseif (empty($d) && !empty($d2) && !empty($d3)) {
               $dt2 = $sis2->row_array();
               $dt3 = $sis3->row_array();
-              echo '<a href="' . base_url("siswa/download/") . $dt2["nis"] . '/' . $dt2['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Raport Speaking</a>';
+              // echo '<a href="' . base_url("siswa/download/") . $dt2["nis"] . '/' . $dt2['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Raport Speaking</a>';
               echo '<a href="' . base_url("siswa/download/") . $dt3["nis"] . '/' . $dt3['LinkRaport'] . '" class="btn btn-lg btn-warning btn-block">Download Raport Al Quran</a>';
               echo '<a href="#" class="btn btn-lg btn-default btn-block" disabled>Raport Akademik Belum diupload</a>';
             } elseif (!empty($d) && empty($d2) && !empty($d3)) {
