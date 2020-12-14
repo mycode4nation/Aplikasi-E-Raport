@@ -131,8 +131,11 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
                             </form>
                           </td>
                         </tr>
-                      <?php }
-                      $no++;
+                      <?php
+                        $no++;
+                      }
+                      ?>
+                      <?php
                       $no = 1;
                       foreach ($fil->result_array() as $de) { ?>
                         <tr>
@@ -169,7 +172,9 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
                       <?php
                         $no++;
                       }
-                    } else {
+                      ?>
+
+                      <?php  } else {
                       $no = 1;
                       foreach ($sisw->result_array() as $ke) { ?>
 
