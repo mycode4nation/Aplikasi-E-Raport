@@ -98,13 +98,22 @@ class Bagianadmin extends CI_Controller
         $d2 = $this->input->post('NamaLengkap', TRUE);
         $dacak = $this->input->post('nis', TRUE);
         $hps = $this->input->post('link', TRUE);
+        $jenisRaport = $this->session->userdata('jenis_rapor');
         $kode_rapor =  $this->session->userdata('kode_rapor');
         $namaRapor = "";
 
-        if ($kode_rapor !== 1) {
-            $namaRapor = "Rapor Speaking";
-        } else {
+        if ($kode_rapor == 1) {
             $namaRapor = "Rapor Akademik";
+        } elseif ($kode_rapor  == 2) {
+            $namaRapor = "Rapor Speaking";
+        } elseif ($kode_rapor  == 3) {
+            $namaRapor = "Rapor Integral";
+        } elseif ($kode_rapor  == 4) {
+            $namaRapor = "Rapor Ruhiyah";
+        } elseif ($kode_rapor  == 5) {
+            $namaRapor = "Rapor Aqliyah";
+        } elseif ($kode_rapor  == 6) {
+            $namaRapor = "Rapor Jismiyah";
         }
 
         $tm = time();
@@ -130,18 +139,12 @@ class Bagianadmin extends CI_Controller
             $upload_data = $this->upload->data();
             $data['file'] = $upload_data['file_name'];
             $filenya = $data['file'];
-            if ($kode_rapor !== 1) {
-                $kode_rapor = 0;
-                $this->db->update('file_rapor2', ['LinkRaport' => $filenya], ['nis' => $dacak], ['kode_rapor' => $kode_rapor]);
-                $this->session->set_flashdata('notif', '<div class="alert alert-info"><b>PROSES UPDATE BERHASIL!</b> <br/>Raport Atas Nama <B>' . $d2 . '<B/> berhasil di Update!</div>');
-                echo $this->session->set_flashdata('msg', 'info');
-                redirect('walikelas/bagianadmin/speaking');
-            } else {
-                $this->db->update('file', ['LinkRaport' => $filenya], ['nis' => $dacak], ['kode_rapor' => $kode_rapor]);
-                $this->session->set_flashdata('notif', '<div class="alert alert-info"><b>PROSES UPDATE BERHASIL!</b> <br/>Raport Atas Nama <B>' . $d2 . '<B/> berhasil di Update!</div>');
-                echo $this->session->set_flashdata('msg', 'info');
-                redirect('walikelas/bagianadmin');
-            }
+
+            $kode_rapor = 0;
+            $this->db->update($jenisRaport, ['LinkRaport' => $filenya], ['nis' => $dacak], ['kode_rapor' => $kode_rapor]);
+            $this->session->set_flashdata('notif', '<div class="alert alert-info"><b>PROSES UPDATE BERHASIL!</b> <br/>Raport Atas Nama <B>' . $d2 . '<B/> berhasil di Update!</div>');
+            echo $this->session->set_flashdata('msg', 'info');
+            redirect('walikelas/bagianadmin/');
         }
     }
 

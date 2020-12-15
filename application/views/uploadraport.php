@@ -55,19 +55,37 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
         </h1>
         <?php
         $j  = $this->db->get_where('siswa', ['Kelas' => $kel])->num_rows();
+
         $j1 = $sisw->num_rows();
         $j3 = $fil->num_rows();
-        $j4 = $this->db->query("select*from file,siswa where file.nis=siswa.nis AND siswa.Kelas='" . $kel . "' AND file.StatusDownload='L' order by file.nis ASC")->num_rows();
+        $j4 = $this->db->query("select*from akademik,siswa where akademik.nis=siswa.nis AND siswa.Kelas='" . $kel . "' AND akademik.StatusDownload='L' order by akademik.nis ASC")->num_rows();
+
         $k1 = $sisw2->num_rows();
         $k3 = $fil2->num_rows();
-        $k4 = $this->db->query("select*from file_rapor2,siswa where file_rapor2.nis=siswa.nis AND siswa.Kelas='" . $kel . "' AND file_rapor2.StatusDownload='L' order by file_rapor2.nis ASC")->num_rows();
+        $k4 = $this->db->query("select*from aqliyah,siswa where aqliyah.nis=siswa.nis AND siswa.Kelas='" . $kel . "' AND aqliyah.StatusDownload='L' order by aqliyah.nis ASC")->num_rows();
+
+        $l1 = $sisw3->num_rows();
+        $l3 = $fil3->num_rows();
+        $l4 = $this->db->query("select*from integral,siswa where integral.nis=siswa.nis AND siswa.Kelas='" . $kel . "' AND integral.StatusDownload='L' order by integral.nis ASC")->num_rows();
+
+        $m1 = $sisw4->num_rows();
+        $m3 = $fil4->num_rows();
+        $m4 = $this->db->query("select*from ruhiyah,siswa where ruhiyah.nis=siswa.nis AND siswa.Kelas='" . $kel . "' AND ruhiyah.StatusDownload='L' order by ruhiyah.nis ASC")->num_rows();
+
+        $n1 = $sisw5->num_rows();
+        $n3 = $fil5->num_rows();
+        $n4 = $this->db->query("select*from jismiyah,siswa where jismiyah.nis=siswa.nis AND siswa.Kelas='" . $kel . "' AND jismiyah.StatusDownload='L' order by jismiyah.nis ASC")->num_rows();
+
+        $o1 = $sisw2->num_rows();
+        $o3 = $fil2->num_rows();
+        $o4 = $this->db->query("select*from speaking,siswa where speaking.nis=siswa.nis AND siswa.Kelas='" . $kel . "' AND speaking.StatusDownload='L' order by speaking.nis ASC")->num_rows();
 
         ?>
         <ol class="breadcrumb">
           <li style="font-size: 16px;">Total Siswa : <?php echo $j; ?> </li>
-          <li style="font-size: 16px;">Belum Upload : <?php echo $j1 + $k1; ?> </li>
-          <li style="font-size: 16px; color: blue;">Sudah Upload : <?php echo $j3 + $k3; ?> </li>
-          <li style="font-size: 16px; color: blue;">Siswa Download : <?php echo $j4 + $k4; ?> </li>
+          <li style="font-size: 16px;">Belum Upload : <?php echo $j1 + $k1 + $l1 + $m1 + $n1 + $o1; ?> </li>
+          <li style="font-size: 16px; color: blue;">Sudah Upload : <?php echo $j3 + $k3 + $l3 + $m3 + $n3 + $o3; ?> </li>
+          <li style="font-size: 16px; color: blue;">Siswa Download : <?php echo $j4 + $k4 + $l4 + $m4 + $n4 + $o4; ?> </li>
         </ol>
 
         <!-- Main content -->
@@ -139,149 +157,149 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
               </div>
               <!-- /.col -->
             </div>
-            <!-- /.row -->
+          </div>
+          <!-- /.row -->
 
-            <div class="row">
-              <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="box">
                 <div class="box">
-                  <div class="box">
-                    <div class="box-header">
-                      <h4>
-                        RAPOR SPEAKING
-                      </h4>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                      <?php echo $this->session->flashdata('notif') ?>
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <td>NO</td>
-                            <td>NIS</td>
-                            <td>Nama Lngkap</td>
-                            <td>Status Upload</td>
-                            <td>Status Download</td>
-                          </tr>
-                        </thead>
-                        <?php
-                        $no = 1;
-                        foreach ($sisw2->result_array() as $ke) { ?>
-                          <tr>
-                            <td><?php echo $no; ?></td>
-                            <td><?php echo $ke['nis']; ?></td>
-                            <td><?php echo $ke['NamaLengkap']; ?></td>
-                            <td><span class="fa fa-exclamation-triangle" style="color:red"> Belum Upload</span></td>
-                            <td><span class="fa fa-exclamation-triangle" style="color:red"> KOSONG</span></td>
-                          </tr>
-                        <?php
-                          $no++;
-                        }
-                        ?>
-                        <?php
-                        $no = 1;
-                        foreach ($fil2->result_array() as $de) { ?>
-                          <tr>
-                            <td><?php echo $no; ?></td>
-                            <td><?php echo $de['nis']; ?></td>
-                            <td><?php echo $de['NamaLengkap']; ?></td>
-                            <td><span class="fa fa-check" style="color:blue"> Berhasil Upload </span></td>
-                            <td>
-                              <?php
-                              if ($de['StatusDownload'] == 'B') {
-                                echo '<span class="fa fa-exclamation-triangle" style="color:red"> <a href="' . base_url('uploadraport/download/') . $de["LinkRaport"] . '">Siswa Belum Download</a> </span>';
-                              } else {
-                                echo '<span class="fa fa-check" style="color:blue"> <a href="' . base_url('uploadraport/download/') . $de["LinkRaport"] . '">di Download Pada ' . $de["jam_download"] . '</a> </span>';
-                              }
-                              ?>
-                            </td>
-                          </tr>
-                        <?php
-                          $no++;
-                        }
-                        ?>
-
-                      </table>
-
-
-                    </div>
-                    <!-- /.box-body -->
+                  <div class="box-header">
+                    <h4>
+                      RAPOR AQLIYAH
+                    </h4>
                   </div>
-                  <!-- /.box -->
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <?php echo $this->session->flashdata('notif') ?>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <td>NO</td>
+                          <td>NIS</td>
+                          <td>Nama Lngkap</td>
+                          <td>Status Upload</td>
+                          <td>Status Download</td>
+                        </tr>
+                      </thead>
+                      <?php
+                      $no = 1;
+                      foreach ($sisw2->result_array() as $ke) { ?>
+                        <tr>
+                          <td><?php echo $no; ?></td>
+                          <td><?php echo $ke['nis']; ?></td>
+                          <td><?php echo $ke['NamaLengkap']; ?></td>
+                          <td><span class="fa fa-exclamation-triangle" style="color:red"> Belum Upload</span></td>
+                          <td><span class="fa fa-exclamation-triangle" style="color:red"> KOSONG</span></td>
+                        </tr>
+                      <?php
+                        $no++;
+                      }
+                      ?>
+                      <?php
+                      $no = 1;
+                      foreach ($fil2->result_array() as $de) { ?>
+                        <tr>
+                          <td><?php echo $no; ?></td>
+                          <td><?php echo $de['nis']; ?></td>
+                          <td><?php echo $de['NamaLengkap']; ?></td>
+                          <td><span class="fa fa-check" style="color:blue"> Berhasil Upload </span></td>
+                          <td>
+                            <?php
+                            if ($de['StatusDownload'] == 'B') {
+                              echo '<span class="fa fa-exclamation-triangle" style="color:red"> <a href="' . base_url('uploadraport/download/') . $de["LinkRaport"] . '">Siswa Belum Download</a> </span>';
+                            } else {
+                              echo '<span class="fa fa-check" style="color:blue"> <a href="' . base_url('uploadraport/download/') . $de["LinkRaport"] . '">di Download Pada ' . $de["jam_download"] . '</a> </span>';
+                            }
+                            ?>
+                          </td>
+                        </tr>
+                      <?php
+                        $no++;
+                      }
+                      ?>
+                    </table>
+                  </div>
+                  <!-- /.box-body -->
                 </div>
-                <!-- /.col -->
+                <!-- /.box -->
               </div>
-              <!-- /.row -->
+              <!-- /.col -->
+            </div>
+          </div>
+          <!-- /.row -->
 
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="box">
-                    <div class="box">
-                      <div class="box-header">
-                        <h4>
-                          RAPOR Al QUR'AN
-                        </h4>
-                      </div>
-                      <!-- /.box-header -->
-                      <div class="box-body">
-                        <?php echo $this->session->flashdata('notif') ?>
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <td>NO</td>
-                              <td>NIS</td>
-                              <td>Nama Lngkap</td>
-                              <td>Status Upload</td>
-                              <td>Status Download</td>
-                            </tr>
-                          </thead>
-                          <?php
-                          $no = 1;
-                          foreach ($sisw3->result_array() as $ke) { ?>
-                            <tr>
-                              <td><?php echo $no; ?></td>
-                              <td><?php echo $ke['nis']; ?></td>
-                              <td><?php echo $ke['NamaLengkap']; ?></td>
-                              <td><span class="fa fa-exclamation-triangle" style="color:red"> Belum Upload</span></td>
-                              <td><span class="fa fa-exclamation-triangle" style="color:red"> KOSONG</span></td>
-                            </tr>
-                          <?php
-                            $no++;
-                          }
-                          ?>
-                          <?php
-                          $no = 1;
-                          foreach ($fil3->result_array() as $de) { ?>
-                            <tr>
-                              <td><?php echo $no; ?></td>
-                              <td><?php echo $de['nis']; ?></td>
-                              <td><?php echo $de['NamaLengkap']; ?></td>
-                              <td><span class="fa fa-check" style="color:blue"> Berhasil Upload </span></td>
-                              <td>
-                                <?php
-                                if ($de['StatusDownload'] == 'B') {
-                                  echo '<span class="fa fa-exclamation-triangle" style="color:red"> <a href="' . base_url('uploadraport/download/') . $de["LinkRaport"] . '">Siswa Belum Download</a> </span>';
-                                } else {
-                                  echo '<span class="fa fa-check" style="color:blue"> <a href="' . base_url('uploadraport/download/') . $de["LinkRaport"] . '">di Download Pada ' . $de["jam_download"] . '</a> </span>';
-                                }
-                                ?>
-                              </td>
-                            </tr>
-                          <?php
-                            $no++;
-                          }
-                          ?>
-
-                        </table>
-
-
-                      </div>
-                      <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="box">
+                <div class="box">
+                  <div class="box-header">
+                    <h4>
+                      RAPOR INTEGRAL
+                    </h4>
                   </div>
-                  <!-- /.col -->
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <?php echo $this->session->flashdata('notif') ?>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <td>NO</td>
+                          <td>NIS</td>
+                          <td>Nama Lngkap</td>
+                          <td>Status Upload</td>
+                          <td>Status Download</td>
+                        </tr>
+                      </thead>
+                      <?php
+                      $no = 1;
+                      foreach ($sisw3->result_array() as $ke) { ?>
+                        <tr>
+                          <td><?php echo $no; ?></td>
+                          <td><?php echo $ke['nis']; ?></td>
+                          <td><?php echo $ke['NamaLengkap']; ?></td>
+                          <td><span class="fa fa-exclamation-triangle" style="color:red"> Belum Upload</span></td>
+                          <td><span class="fa fa-exclamation-triangle" style="color:red"> KOSONG</span></td>
+                        </tr>
+                      <?php
+                        $no++;
+                      }
+                      ?>
+                      <?php
+                      $no = 1;
+                      foreach ($fil3->result_array() as $de) { ?>
+                        <tr>
+                          <td><?php echo $no; ?></td>
+                          <td><?php echo $de['nis']; ?></td>
+                          <td><?php echo $de['NamaLengkap']; ?></td>
+                          <td><span class="fa fa-check" style="color:blue"> Berhasil Upload </span></td>
+                          <td>
+                            <?php
+                            if ($de['StatusDownload'] == 'B') {
+                              echo '<span class="fa fa-exclamation-triangle" style="color:red"> <a href="' . base_url('uploadraport/download/') . $de["LinkRaport"] . '">Siswa Belum Download</a> </span>';
+                            } else {
+                              echo '<span class="fa fa-check" style="color:blue"> <a href="' . base_url('uploadraport/download/') . $de["LinkRaport"] . '">di Download Pada ' . $de["jam_download"] . '</a> </span>';
+                            }
+                            ?>
+                          </td>
+                        </tr>
+                      <?php
+                        $no++;
+                      }
+                      ?>
+
+                    </table>
+
+
+                  </div>
+                  <!-- /.box-body -->
                 </div>
-                <!-- /.row -->
+                <!-- /.box -->
+              </div>
+              <!-- /.col -->
+            </div>
+          </div>
+          <!-- /.row -->
 
 
 

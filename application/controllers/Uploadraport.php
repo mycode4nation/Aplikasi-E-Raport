@@ -15,14 +15,25 @@ class Uploadraport extends CI_Controller
     {
         $ds = $this->db->get_where('siswa', ['ID' => $this->uri->segment('3')])->row_array();
         $data['kel'] = $ds['Kelas'];
-        $data['sisw'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from file where siswa.nis=file.nis) order by nis ASC");
-        $data['fil'] = $this->db->query("select*from file,siswa where file.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by file.nis ASC");
 
-        $data['sisw2'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from file_rapor2 where siswa.nis=file_rapor2.nis) order by nis ASC");
-        $data['fil2'] = $this->db->query("select*from file_rapor2,siswa where file_rapor2.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by file_rapor2.nis ASC");
+        $data['sisw'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from akademik where siswa.nis=akademik.nis) order by nis ASC");
+        $data['fil'] = $this->db->query("select*from akademik,siswa where akademik.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by akademik.nis ASC");
 
-        $data['sisw3'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from file_rapor3 where siswa.nis=file_rapor3.nis) order by nis ASC");
-        $data['fil3'] = $this->db->query("select*from file_rapor3,siswa where file_rapor3.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by file_rapor3.nis ASC");
+        $data['sisw2'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from aqliyah where siswa.nis=aqliyah.nis) order by nis ASC");
+        $data['fil2'] = $this->db->query("select*from aqliyah,siswa where aqliyah.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by aqliyah.nis ASC");
+
+        $data['sisw3'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from integral where siswa.nis=integral.nis) order by nis ASC");
+        $data['fil3'] = $this->db->query("select*from integral,siswa where integral.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by integral.nis ASC");
+
+        $data['sisw4'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from ruhiyah where siswa.nis=ruhiyah.nis) order by nis ASC");
+        $data['fil4'] = $this->db->query("select*from ruhiyah,siswa where ruhiyah.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by ruhiyah.nis ASC");
+
+        $data['sisw5'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from jismiyah where siswa.nis=jismiyah.nis) order by nis ASC");
+        $data['fil5'] = $this->db->query("select*from jismiyah,siswa where jismiyah.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by jismiyah.nis ASC");
+
+        $data['sisw6'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from speaking where siswa.nis=speaking.nis) order by nis ASC");
+        $data['fil6'] = $this->db->query("select*from speaking,siswa where speaking.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by speaking.nis ASC");
+
         $this->load->view('uploadraport', $data);
     }
     public function download()
