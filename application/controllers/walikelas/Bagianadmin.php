@@ -40,8 +40,9 @@ class Bagianadmin extends CI_Controller
 
     public function logout()
     {
+        $jenisRaport = $this->session->userdata('jenis_rapor');
         $this->session->sess_destroy();
-        redirect('walikelas/login');
+        redirect('guruwalikelas/' . $jenisRaport);
     }
 
     public function simpan()

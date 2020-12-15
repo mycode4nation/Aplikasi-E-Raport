@@ -126,6 +126,9 @@ date_default_timezone_set('Asia/Jakarta');
             $d = $sis->num_rows();
             $d2 = $sis2->num_rows();
             $d3 = $sis3->num_rows();
+            $d = $sis4->num_rows();
+            $d2 = $sis5->num_rows();
+            $d3 = $sis6->num_rows();
             if (!empty($d) && !empty($d2) && !empty($d3)) {
               $dt = $sis->row_array();
               $dt2 = $sis2->row_array();
