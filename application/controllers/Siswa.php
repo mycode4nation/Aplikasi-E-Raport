@@ -1,12 +1,18 @@
 <?php
+
+
+
 class Siswa extends CI_Controller
+
 {
+
     function __construct()
     {
         parent::__construct();
         if ($this->session->userdata('masuk') != "login") {
             redirect('loginaplikasi');
         }
+        $this->load->helper(array('url', 'download'));
     }
     function index()
     {
@@ -18,6 +24,12 @@ class Siswa extends CI_Controller
         $data['sis5'] = $this->db->query('select*from ruhiyah,siswa where ruhiyah.nis=siswa.nis AND ruhiyah.nis="' . $s . '" order by ruhiyah.nis ASC');
         $data['sis6'] = $this->db->query('select*from speaking,siswa where speaking.nis=siswa.nis AND speaking.nis="' . $s . '" order by speaking.nis ASC');
 
+        $data['akademik'] =  $data['sis']->num_rows();
+        $data['aqliyah'] =  $data['sis2']->num_rows();
+        $data['integral'] =  $data['sis3']->num_rows();
+        $data['jismiyah'] =  $data['sis4']->num_rows();
+        $data['ruhiyah'] =  $data['sis5']->num_rows();
+        $data['speaking'] =  $data['sis6']->num_rows();
 
         $this->load->view('v_siswa', $data);
     }
@@ -34,6 +46,24 @@ class Siswa extends CI_Controller
         $this->db->update('speaking', ['StatusDownload' => 'L', 'jam_download' => $tgl], ['nis' => $this->uri->segment('3')]);
         $down = "raport/" . $this->uri->segment('4');
         force_download($down, NULL);
+    }
+
+    function downloadRapor($nis, $link)
+    {
+
+        if ($link) {
+            $file = realpath("raport") . "\\" .  $link;
+            // check file exists    
+            if (file_exists($file)) {
+                // get file content
+                $data = file_get_contents($file);
+                //force download
+                force_download($link, $data);
+            } else {
+                // Redirect to base url
+                redirect(base_url());
+            }
+        }
     }
 
     function logout()
