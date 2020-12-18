@@ -10,8 +10,7 @@ class Login extends CI_Controller
     function index()
     {
 
-        //  $this->load->view('walikelas/w_login');
-
+        $this->load->view('walikelas/w_login_All');
     }
 
     function pilih($params)
@@ -27,6 +26,8 @@ class Login extends CI_Controller
         $this->load->view('walikelas/w_login', $data);
         return  $jenisRapor;
     }
+
+
     function proses()
     {
         $jenisRapor = $this->session->userdata('jenis_rapor');

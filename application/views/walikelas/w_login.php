@@ -132,6 +132,8 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
                         <input type="password" class="form-control" placeholder="Password" name="password" required>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">
                             Masuk</button>
+                        <a href="<?= base_url("walikelas/login"); ?>" class="btn btn-lg btn-danger btn-block">
+                            Kembali</a>
                     </form>
                 </div>
             </div>

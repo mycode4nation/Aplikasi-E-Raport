@@ -52,6 +52,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $route['default_controller'] = "loginaplikasi";
 $route['guruwalikelas/(:any)'] = "walikelas/Login/pilih/$1";
+$route['walikelas'] = "walikelas/Login";
 $route['admin'] = "adminpanel";
 $route['satpam'] = "satpam";
 $route['404_override'] = '';
