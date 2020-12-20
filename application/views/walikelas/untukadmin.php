@@ -82,70 +82,158 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
                       </tr>
                     </thead>
                     <?php
-                    $no = 1;
-                    foreach ($sisw->result_array() as $ke) { ?>
-                      <tr>
-                        <td><?php echo $no; ?></td>
-                        <td><?php echo $ke['nis']; ?></td>
-                        <td><?php echo $ke['NamaLengkap']; ?></td>
-                        <td><span class="fa fa-exclamation-triangle" style="color:red"> Belum Upload</span></td>
-                        <td><span class="fa fa-exclamation-triangle" style="color:red"> KOSONG</span></td>
-                        <td>
-                          <?php echo form_open_multipart('walikelas/bagianadmin/simpan'); ?>
-                          <input type="hidden" name="NamaLengkap" value="<?php echo $ke['NamaLengkap']; ?>">
-                          <input type="hidden" name="nis" value="<?php echo $ke['nis']; ?>">
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="col-md-6"><input type="file" name="file" required></div>
-                              <div class="col-md-6"> <button class="btn btn-primary">Simpan</button> </div>
+                    if (empty($fil->result()) and empty($sisw->result())) { ?>
+                      <?php
+                      $no = 1;
+                      foreach ($fil2->result_array() as $ke) { ?>
+                        <tr>
+                          <td><?php echo $no; ?></td>
+                          <td><?php echo $ke['nis']; ?></td>
+                          <td><?php echo $ke['NamaLengkap']; ?></td>
+                          <td><span class="fa fa-exclamation-triangle" style="color:red"> Belum Upload</span></td>
+                          <td><span class="fa fa-exclamation-triangle" style="color:red"> KOSONG</span></td>
+                          <td>
+                            <?php echo form_open_multipart('walikelas/bagianadmin/simpan'); ?>
+                            <input type="hidden" name="NamaLengkap" value="<?php echo $ke['NamaLengkap']; ?>">
+                            <input type="hidden" name="nis" value="<?php echo $ke['nis']; ?>">
+                            <div class="row">
+                              <div class="col-xs-12">
+                                <div class="col-md-6"><input type="file" name="file" required></div>
+                                <div class="col-md-6"> <button class="btn btn-primary">Simpan</button> </div>
+                              </div>
                             </div>
-                          </div>
-                          </form>
-                        </td>
-                      </tr>
-                    <?php
+                            </form>
+                          </td>
+                        </tr>
+                      <?php }
+
                       $no++;
-                    }
-                    ?>
-                    <?php
-                    $no = 1;
-                    foreach ($fil->result_array() as $de) { ?>
-                      <tr>
-                        <td><?php echo $no; ?></td>
-                        <td><?php echo $de['nis']; ?></td>
-                        <td><?php echo $de['NamaLengkap']; ?></td>
-                        <td>
-
-                          <span class="fa fa-check" style="color:blue"> Berhasil Upload </span></td>
-
-                        <td>
-                          <?php
-                          if ($de['StatusDownload'] == 'B') {
-                            echo '<span class="fa fa-exclamation-triangle" style="color:red"> <a href="' . base_url('walikelas/bagianadmin/download/') . $de["LinkRaport"] . '">Download</a> </span>';
-                          } else {
-                            echo '<span class="fa fa-check" style="color:blue"> <a href="' . base_url('walikelas/bagianadmin/download/') . $de["LinkRaport"] . '">di Download Pada ' . $de["jam_download"] . '</a> </span>';
-                          }
-                          ?>
-                        </td>
-                        <td>
-                          <?php echo form_open_multipart('walikelas/bagianadmin/update'); ?>
-                          <input type="hidden" name="NamaLengkap" value="<?php echo $de['NamaLengkap']; ?>">
-                          <input type="hidden" name="nis" value="<?php echo $de['nis']; ?>">
-                          <input type="hidden" name="link" value="<?php echo $de['LinkRaport']; ?>">
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="col-md-6"><input type="file" name="file" required></div>
-                              <div class="col-md-6"> <button class="btn btn-success">Update</button> </div>
+                    } else if (!empty($fil->result()) and empty($sisw->result())) { ?>
+                      <?php
+                      $no = 1;
+                      foreach ($sisw->result_array() as $ke) { ?>
+                        <tr>
+                          <td><?php echo $no; ?></td>
+                          <td><?php echo $ke['nis']; ?></td>
+                          <td><?php echo $ke['NamaLengkap']; ?></td>
+                          <td><span class="fa fa-exclamation-triangle" style="color:red"> Belum Upload</span></td>
+                          <td><span class="fa fa-exclamation-triangle" style="color:red"> KOSONG</span></td>
+                          <td>
+                            <?php echo form_open_multipart('walikelas/bagianadmin/simpan'); ?>
+                            <input type="hidden" name="NamaLengkap" value="<?php echo $ke['NamaLengkap']; ?>">
+                            <input type="hidden" name="nis" value="<?php echo $ke['nis']; ?>">
+                            <div class="row">
+                              <div class="col-xs-12">
+                                <div class="col-md-6"><input type="file" name="file" required></div>
+                                <div class="col-md-6"> <button class="btn btn-primary">Simpan</button> </div>
+                              </div>
                             </div>
-                          </div>
-                          </form>
-                        </td>
-                      </tr>
-                    <?php
-                      $no++;
-                    }
-                    ?>
+                            </form>
+                          </td>
+                        </tr>
+                      <?php
+                        $no++;
+                      }
+                      ?>
+                      <?php
+                      $no = 1;
+                      foreach ($fil->result_array() as $de) { ?>
+                        <tr>
+                          <td><?php echo $no; ?></td>
+                          <td><?php echo $de['nis']; ?></td>
+                          <td><?php echo $de['NamaLengkap']; ?></td>
+                          <td>
 
+                            <span class="fa fa-check" style="color:blue"> Berhasil Upload </span></td>
+
+                          <td>
+                            <?php
+                            if ($de['StatusDownload'] == 'B') {
+                              echo '<span class="fa fa-exclamation-triangle" style="color:red"> <a href="' . base_url('walikelas/bagianadmin/download/') . $de["LinkRaport"] . '">Download</a> </span>';
+                            } else {
+                              echo '<span class="fa fa-check" style="color:blue"> <a href="' . base_url('walikelas/bagianadmin/download/') . $de["LinkRaport"] . '">di Download Pada ' . $de["jam_download"] . '</a> </span>';
+                            }
+                            ?>
+                          </td>
+                          <td>
+                            <?php echo form_open_multipart('walikelas/bagianadmin/update'); ?>
+                            <input type="hidden" name="NamaLengkap" value="<?php echo $de['NamaLengkap']; ?>">
+                            <input type="hidden" name="nis" value="<?php echo $de['nis']; ?>">
+                            <input type="hidden" name="link" value="<?php echo $de['LinkRaport']; ?>">
+                            <div class="row">
+                              <div class="col-xs-12">
+                                <div class="col-md-6"><input type="file" name="file" required></div>
+                                <div class="col-md-6"> <button class="btn btn-success">Update</button> </div>
+                              </div>
+                            </div>
+                            </form>
+                          </td>
+                        </tr>
+                      <?php
+                        $no++;
+                      }
+                      ?>
+
+                      <?php  } else {
+                      $no = 1;
+                      foreach ($sisw->result_array() as $ke) { ?>
+
+                        <tr>
+                          <td><?php echo $no; ?></td>
+                          <td><?php echo $ke['nis']; ?></td>
+                          <td><?php echo $ke['NamaLengkap']; ?></td>
+                          <td><span class="fa fa-exclamation-triangle" style="color:red"> Belum Upload</span></td>
+                          <td><span class="fa fa-exclamation-triangle" style="color:red"> KOSONG</span></td>
+                          <td>
+                            <?php echo form_open_multipart('walikelas/bagianadmin/simpan'); ?>
+                            <input type="hidden" name="NamaLengkap" value="<?php echo $ke['NamaLengkap']; ?>">
+                            <input type="hidden" name="nis" value="<?php echo $ke['nis']; ?>">
+                            <div class="row">
+                              <div class="col-xs-12">
+                                <div class="col-md-6"><input type="file" name="file" required></div>
+                                <div class="col-md-6"> <button class="btn btn-primary">Simpan</button> </div>
+                              </div>
+                            </div>
+                            </form>
+                          </td>
+                        </tr>
+
+                      <?php }
+                      $no++;
+                      foreach ($fil->result_array() as $de) { ?>
+
+                        <tr>
+                          <td><?php echo $no; ?></td>
+                          <td><?php echo $de['nis']; ?></td>
+                          <td><?php echo $de['NamaLengkap']; ?></td>
+                          <td>
+
+                            <span class="fa fa-check" style="color:blue"> Berhasil Upload </span></td>
+
+                          <td>
+                            <?php
+                            if ($de['StatusDownload'] == 'B') {
+                              echo '<span class="fa fa-exclamation-triangle" style="color:red"> <a href="' . base_url('walikelas/bagianadmin/download/') . $de["LinkRaport"] . '">Download</a> </span>';
+                            } else {
+                              echo '<span class="fa fa-check" style="color:blue"> <a href="' . base_url('walikelas/bagianadmin/download/') . $de["LinkRaport"] . '">di Download Pada ' . $de["jam_download"] . '</a> </span>';
+                            }
+                            ?>
+                          </td>
+                          <td>
+                            <?php echo form_open_multipart('walikelas/bagianadmin/update'); ?>
+                            <input type="hidden" name="NamaLengkap" value="<?php echo $de['NamaLengkap']; ?>">
+                            <input type="hidden" name="nis" value="<?php echo $de['nis']; ?>">
+                            <input type="hidden" name="link" value="<?php echo $de['LinkRaport']; ?>">
+                            <div class="row">
+                              <div class="col-xs-12">
+                                <div class="col-md-6"><input type="file" name="file" required></div>
+                                <div class="col-md-6"> <button class="btn btn-success">Update</button> </div>
+                              </div>
+                            </div>
+                            </form>
+                          </td>
+                      <?php  }
+                    } ?>
                   </table>
 
 

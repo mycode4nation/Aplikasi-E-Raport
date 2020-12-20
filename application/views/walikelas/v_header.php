@@ -2,6 +2,21 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
+$jenisRapor = $this->session->userdata('jenis_rapor');
+$archorRapor = "";
+if ($jenisRapor == 'akademik') {
+  $archorRapor = "Rapor Akademik";
+} elseif ($jenisRapor == 'speaking') {
+  $archorRapor = "Rapor Speaking";
+} elseif ($jenisRapor == 'integral') {
+  $archorRapor = "Rapor Integral";
+} elseif ($jenisRapor == 'ruhiyah') {
+  $archorRapor = "Rapor Ruhiyah";
+} elseif ($jenisRapor == 'aqliyah') {
+  $archorRapor = "Rapor Aqliyah";
+} elseif ($jenisRapor == 'jismiyah') {
+  $archorRapor = "Rapor Jismiyah";
+}
 ?>
 
 <header class="main-header">
@@ -75,23 +90,7 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
         <ul class="treeview-menu">
           <li>
             <a href="<?php echo base_url() . 'walikelas/bagianadmin' ?>">
-              <i class="fa fa-book"></i> <span>Rapor Akademik</span>
-              <span class="pull-right-container">
-                <small class="label pull-right"></small>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo base_url() . 'walikelas/bagianadmin/speaking' ?>">
-              <i class="fa fa-book"></i> <span>Rapor Speaking</span>
-              <span class="pull-right-container">
-                <small class="label pull-right"></small>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo base_url() . 'walikelas/bagianadmin/alquran' ?>">
-              <i class="fa fa-book"></i> <span>Rapor Al Qur'an</span>
+              <i class="fa fa-book"></i> <span><?= $archorRapor; ?></span>
               <span class="pull-right-container">
                 <small class="label pull-right"></small>
               </span>
