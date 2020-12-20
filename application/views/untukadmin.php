@@ -226,7 +226,7 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
 
               <!-- /.box-header -->
               <div class="box-body">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <h4 style="font-weight:bold;"><span class="fa fa-upload"></span> POGRES UPLOAD</h4>
                   <hr />
                   <?php
@@ -286,7 +286,7 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
               </div>
               <!-- /.box-header -->
               <div class="box-body">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <h4 style="font-weight:bold;"><span class="fa fa-upload"></span> POGRES UPLOAD</h4>
                   <hr />
                   <?php
@@ -357,7 +357,7 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
 
               <!-- /.box-header -->
               <div class="box-body">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <h4 style="font-weight:bold;"><span class="fa fa-upload"></span> POGRES UPLOAD</h4>
                   <hr />
                   <?php
@@ -419,7 +419,7 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
 
               <!-- /.box-header -->
               <div class="box-body">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <h4 style="font-weight:bold;"><span class="fa fa-upload"></span> POGRES UPLOAD</h4>
                   <hr />
                   <?php

@@ -54,6 +54,6 @@ $route['default_controller'] = "loginaplikasi";
 $route['guruwalikelas/(:any)'] = "walikelas/Login/pilih/$1";
 $route['walikelas'] = "walikelas/Login";
 $route['admin'] = "adminpanel";
-$route['satpam'] = "satpam";
+$route['satpam'] = "adminpanel";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
