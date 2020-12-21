@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Des 2020 pada 05.30
+-- Waktu pembuatan: 21 Des 2020 pada 14.06
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.2.34
 
@@ -36,6 +36,13 @@ CREATE TABLE `akademik` (
   `jam_download` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `akademik`
+--
+
+INSERT INTO `akademik` (`IDLink`, `kode_rapor`, `nis`, `LinkRaport`, `StatusDownload`, `jam_download`) VALUES
+(14, 1, '1122', '1122_Afrizal_Setyo_Wibisono_Rapor_Akademik1.pdf', 'L', '2020-12-20 12:32:50');
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +58,13 @@ CREATE TABLE `aqliyah` (
   `jam_download` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `aqliyah`
+--
+
+INSERT INTO `aqliyah` (`IDLink`, `kode_rapor`, `nis`, `LinkRaport`, `StatusDownload`, `jam_download`) VALUES
+(2, 5, '1122', '1122_Afrizal_Setyo_Wibisono_Rapor_Aqliyah2.pdf', 'L', '2020-12-20 12:38:55');
+
 -- --------------------------------------------------------
 
 --
@@ -65,6 +79,13 @@ CREATE TABLE `integral` (
   `StatusDownload` enum('B','L') NOT NULL,
   `jam_download` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `integral`
+--
+
+INSERT INTO `integral` (`IDLink`, `kode_rapor`, `nis`, `LinkRaport`, `StatusDownload`, `jam_download`) VALUES
+(1, 3, '1122', '1122_Afrizal_Setyo_Wibisono_Rapor_Integral1.pdf', 'L', '2020-12-20 12:42:41');
 
 -- --------------------------------------------------------
 
@@ -105,6 +126,13 @@ CREATE TABLE `jismiyah` (
   `jam_download` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `jismiyah`
+--
+
+INSERT INTO `jismiyah` (`IDLink`, `kode_rapor`, `nis`, `LinkRaport`, `StatusDownload`, `jam_download`) VALUES
+(1, 6, '1122', '1122_Afrizal_Setyo_Wibisono_Rapor_Jismiyah1.pdf', 'L', '2020-12-20 12:41:36');
+
 -- --------------------------------------------------------
 
 --
@@ -137,6 +165,13 @@ CREATE TABLE `ruhiyah` (
   `StatusDownload` enum('B','L') NOT NULL,
   `jam_download` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `ruhiyah`
+--
+
+INSERT INTO `ruhiyah` (`IDLink`, `kode_rapor`, `nis`, `LinkRaport`, `StatusDownload`, `jam_download`) VALUES
+(2, 4, '1122', '1122_Afrizal_Setyo_Wibisono_Rapor_Ruhiyah2.pdf', 'L', '2020-12-20 12:50:46');
 
 -- --------------------------------------------------------
 
@@ -196,6 +231,13 @@ CREATE TABLE `speaking` (
   `StatusDownload` enum('B','L') NOT NULL,
   `jam_download` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `speaking`
+--
+
+INSERT INTO `speaking` (`IDLink`, `kode_rapor`, `nis`, `LinkRaport`, `StatusDownload`, `jam_download`) VALUES
+(4, 2, '1122', '1122_Afrizal_Setyo_Wibisono_Rapor_Speaking1.pdf', 'L', '2020-12-20 12:43:39');
 
 -- --------------------------------------------------------
 
@@ -287,19 +329,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `akademik`
 --
 ALTER TABLE `akademik`
-  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `aqliyah`
 --
 ALTER TABLE `aqliyah`
-  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `integral`
 --
 ALTER TABLE `integral`
-  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `jenis_rapor`
@@ -311,19 +353,19 @@ ALTER TABLE `jenis_rapor`
 -- AUTO_INCREMENT untuk tabel `jismiyah`
 --
 ALTER TABLE `jismiyah`
-  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `ruhiyah`
 --
 ALTER TABLE `ruhiyah`
-  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `speaking`
 --
 ALTER TABLE `speaking`
-  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
