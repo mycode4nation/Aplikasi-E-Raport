@@ -40,7 +40,7 @@ class Login extends CI_Controller
         $kl = $this->db->query('select*from password_walikelas where Kelas="' . $username . '" AND password="' . $p . '" limit 1')->num_rows();
         if (empty($kl)) {
             $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert"><span class="fa fa-close"></span></button> Username Atau Password Salah</div>');
-            redirect('walikelas/login');
+            redirect('guruwalikelas/' . $jenisRapor);
         } else {
             $dg = $this->db->get_where('siswa', ['kelas' => $username]);
             $dg1 = $dg->num_rows();
@@ -55,7 +55,7 @@ class Login extends CI_Controller
                 redirect('walikelas/bagianadmin');
             } else {
                 echo $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert"><span class="fa fa-close"></span></button> Username Atau Password Salah</div>');
-                redirect('walikelas/login');
+                redirect('guruwalikelas/' . $jenisRapor);
             }
         }
     }

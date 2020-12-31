@@ -100,6 +100,15 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
                         <a href="<?php echo base_url('guruwalikelas/ruhiyah'); ?>" class="btn btn-lg btn-brown btn-block">Login Ruhiyah</a>
                     </div>
                 </article>
+
+                <article>
+                    <img src="<?php echo base_url() . 'assets/images/quran.png' ?>?sz=120" alt="">
+                    <div class="text">
+                        <h3>Halaman Rapor Madrosatul Quran</h3>
+                        <p>Silahkan klik tombol dibawah ini untuk menuju halaman Login Upload Rapor Madrosatul Quran.</p>
+                        <a href="<?php echo base_url('guruwalikelas/quran'); ?>" class="btn btn-lg btn-brown btn-block">Login Madrosatul Quran</a>
+                    </div>
+                </article>
             </main>
         </div>
     </div>

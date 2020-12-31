@@ -8,6 +8,7 @@ $d3 = $sis3->num_rows();
 $d4 = $sis4->num_rows();
 $d5 = $sis5->num_rows();
 $d6 = $sis6->num_rows();
+$d7 = $sis7->num_rows();
 
 $dt  = $sis->row_array();
 $dt2 = $sis2->row_array();
@@ -15,6 +16,7 @@ $dt3 = $sis3->row_array();
 $dt4 = $sis4->row_array();
 $dt5 = $sis5->row_array();
 $dt6 = $sis6->row_array();
+$dt7 = $sis7->row_array();
 ?>
 <!DOCTYPE html>
 <html>
@@ -128,6 +130,17 @@ $dt6 = $sis6->row_array();
           <center style="font-weight: bold; font-size: 18px;">RAPOR RUHIYAH <br /></center>
           <br>
           <center><?= $ruhiyah == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt6["nis"] . '/' . $dt6['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
+        </div>
+
+      </div>
+
+      <div class="col-sm-6 col-md-4 ">
+        <h1 class="text-center login-title"></h1>
+        <div class="account-wall">
+          <img class="profile-img" src="<?= $quran == 0 ? base_url() . 'assets/images/belum.png' : base_url() . 'assets/images/sudah.png' ?>" alt="">
+          <center style="font-weight: bold; font-size: 18px;">RAPOR Madrosatul Quran <br /></center>
+          <br>
+          <center><?= $quran == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt7["nis"] . '/' . $dt7['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
         </div>
 
       </div>

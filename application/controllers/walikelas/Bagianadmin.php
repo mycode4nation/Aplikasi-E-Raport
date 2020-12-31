@@ -27,7 +27,7 @@ class Bagianadmin extends CI_Controller
             $this->session->set_userdata('kode_rapor', $kodeRapor);
         }
 
-        $data['sisw'] = $this->db->query("select*from siswa where Kelas='" . $uri3 . "' AND NOT EXISTS(select*from " . $jenisRaport . " where siswa.nis=" . $jenisRaport . ".nis) order by nis ASC");
+        $data['sisw'] = $this->db->query("select*from siswa where Kelas='" . $uri3 . "' AND NOT EXISTS(select*from " . $jenisRaport . " where siswa.nis=" . $jenisRaport . ".nis) order by NamaLengkap ASC");
         $data['fil'] = $this->db->query("select*from " . $jenisRaport . ",siswa where " . $jenisRaport . ".nis=siswa.nis AND siswa.Kelas='" . $uri3 . "' AND kode_rapor ='" . $kodeRapor . "' order by " . $jenisRaport . ".nis ASC");
         $data['fil2'] = $this->db->query("select*from siswa where Kelas='" . $uri3 . "'order by nis ASC");
 
@@ -68,7 +68,10 @@ class Bagianadmin extends CI_Controller
             $namaRapor = "Rapor Aqliyah";
         } elseif ($kode_rapor  == 6) {
             $namaRapor = "Rapor Jismiyah";
+        } elseif ($kode_rapor  == 7) {
+            $namaRapor = "Rapor Madrosatul Quran";
         }
+
 
 
         $config['upload_path']          = APPPATH . '../raport/';
@@ -115,6 +118,8 @@ class Bagianadmin extends CI_Controller
             $namaRapor = "Rapor Aqliyah";
         } elseif ($kode_rapor  == 6) {
             $namaRapor = "Rapor Jismiyah";
+        } elseif ($kode_rapor  == 7) {
+            $namaRapor = "Rapor Madrosatul Quran";
         }
 
         $tm = time();
@@ -125,27 +130,23 @@ class Bagianadmin extends CI_Controller
 
         $config['upload_path']          = APPPATH . '../raport/';
         $config['allowed_types']        = 'pdf';
-        $config['max_size']             = 1000;
+        $config['max_size']             = 2000;
         $config['file_name']            = $dacak . "_" . $d2 . "_" . $tm . "_" . $namaRapor;
 
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('file')) {
             $fl = $this->upload->display_errors();
-            $this->session->set_flashdata('notif', '<div class="alert alert-danger"><b>PROSES UPDATE GAGAL! (Max Ukuran File 1 MB dan Berformat PDF)</b>' . $fl . '</div>');
+            $this->session->set_flashdata('notif', '<div class="alert alert-danger"><b>PROSES UPLOAD GAGAL! (Max Ukuran File 1 MB dan Berformat PDF)</b>' . $fl . '</div>');
             redirect('walikelas/bagianadmin');
         } else {
-            $path = './raport/';
-            @unlink($path . $hps);
             $upload_data = $this->upload->data();
             $data['file'] = $upload_data['file_name'];
             $filenya = $data['file'];
-
-            $kode_rapor = 0;
-            $this->db->update($jenisRaport, ['LinkRaport' => $filenya], ['nis' => $dacak], ['kode_rapor' => $kode_rapor]);
-            $this->session->set_flashdata('notif', '<div class="alert alert-info"><b>PROSES UPDATE BERHASIL!</b> <br/>Raport Atas Nama <B>' . $d2 . '<B/> berhasil di Update!</div>');
-            echo $this->session->set_flashdata('msg', 'info');
-            redirect('walikelas/bagianadmin/');
+            $this->db->insert($jenisRaport, ['nis' => $dacak, 'kode_rapor' => $kode_rapor, 'LinkRaport' => $filenya, 'StatusDownload' => 'B']);
+            $this->session->set_flashdata('notif', '<div class="alert alert-success"><b>PROSES UPLOAD BERHASIL!</b> <br/>Raport Atas Nama <B>' . $d2 . '<B/> berhasil di Upload!</div>');
+            echo $this->session->set_flashdata('msg', 'success');
+            redirect('walikelas/bagianadmin');
         }
     }
 

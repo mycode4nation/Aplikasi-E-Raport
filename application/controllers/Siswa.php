@@ -23,6 +23,7 @@ class Siswa extends CI_Controller
         $data['sis4'] = $this->db->query('select*from jismiyah,siswa where jismiyah.nis=siswa.nis AND jismiyah.nis="' . $s . '" order by jismiyah.nis ASC');
         $data['sis5'] = $this->db->query('select*from ruhiyah,siswa where ruhiyah.nis=siswa.nis AND ruhiyah.nis="' . $s . '" order by ruhiyah.nis ASC');
         $data['sis6'] = $this->db->query('select*from speaking,siswa where speaking.nis=siswa.nis AND speaking.nis="' . $s . '" order by speaking.nis ASC');
+        $data['sis7'] = $this->db->query('select*from quran,siswa where quran.nis=siswa.nis AND quran.nis="' . $s . '" order by quran.nis ASC');
 
         $data['akademik'] =  $data['sis']->num_rows();
         $data['aqliyah'] =  $data['sis2']->num_rows();
@@ -30,6 +31,8 @@ class Siswa extends CI_Controller
         $data['jismiyah'] =  $data['sis4']->num_rows();
         $data['ruhiyah'] =  $data['sis5']->num_rows();
         $data['speaking'] =  $data['sis6']->num_rows();
+        $data['quran'] =  $data['sis7']->num_rows();
+
 
         $this->load->view('v_siswa', $data);
     }
@@ -44,6 +47,8 @@ class Siswa extends CI_Controller
         $this->db->update('jismiyah', ['StatusDownload' => 'L', 'jam_download' => $tgl], ['nis' => $this->uri->segment('3')]);
         $this->db->update('ruhiyah', ['StatusDownload' => 'L', 'jam_download' => $tgl], ['nis' => $this->uri->segment('3')]);
         $this->db->update('speaking', ['StatusDownload' => 'L', 'jam_download' => $tgl], ['nis' => $this->uri->segment('3')]);
+        $this->db->update('quran', ['StatusDownload' => 'L', 'jam_download' => $tgl], ['nis' => $this->uri->segment('3')]);
+
         $down = "raport/" . $this->uri->segment('4');
         force_download($down, NULL);
     }
