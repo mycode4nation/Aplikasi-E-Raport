@@ -68,7 +68,10 @@ class Bagianadmin extends CI_Controller
             $namaRapor = "Rapor Aqliyah";
         } elseif ($kode_rapor  == 6) {
             $namaRapor = "Rapor Jismiyah";
+        } elseif ($kode_rapor  == 7) {
+            $namaRapor = "Rapor Madrosatul Quran";
         }
+
 
 
         $config['upload_path']          = APPPATH . '../raport/';
@@ -115,6 +118,8 @@ class Bagianadmin extends CI_Controller
             $namaRapor = "Rapor Aqliyah";
         } elseif ($kode_rapor  == 6) {
             $namaRapor = "Rapor Jismiyah";
+        } elseif ($kode_rapor  == 7) {
+            $namaRapor = "Rapor Madrosatul Quran";
         }
 
         $tm = time();

@@ -34,6 +34,9 @@ class Uploadraport extends CI_Controller
         $data['sisw6'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from speaking where siswa.nis=speaking.nis) order by nis ASC");
         $data['fil6'] = $this->db->query("select*from speaking,siswa where speaking.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by speaking.nis ASC");
 
+        $data['sisw7'] = $this->db->query("select*from siswa where Kelas='" . $ds['Kelas'] . "' AND NOT EXISTS(select*from quran where siswa.nis=quran.nis) order by nis ASC");
+        $data['fil7'] = $this->db->query("select*from quran,siswa where quran.nis=siswa.nis AND siswa.Kelas='" . $ds['Kelas'] . "' order by quran.nis ASC");
+
         $this->load->view('uploadraport', $data);
     }
     public function download()

@@ -80,12 +80,16 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
         $o3 = $fil2->num_rows();
         $o4 = $this->db->query("select*from speaking,siswa where speaking.nis=siswa.nis AND siswa.Kelas='" . $kel . "' AND speaking.StatusDownload='L' order by speaking.nis ASC")->num_rows();
 
+        $p1 = $sisw7->num_rows();
+        $p3 = $fil7->num_rows();
+        $p4 = $this->db->query("select*from quran,siswa where quran.nis=siswa.nis AND siswa.Kelas='" . $kel . "' AND quran.StatusDownload='L' order by quran.nis ASC")->num_rows();
+
         ?>
         <ol class="breadcrumb">
           <li style="font-size: 16px;">Total Siswa : <?php echo $j; ?> </li>
-          <li style="font-size: 16px;">Belum Upload : <?php echo $j1 + $k1 + $l1 + $m1 + $n1 + $o1; ?> </li>
-          <li style="font-size: 16px; color: blue;">Sudah Upload : <?php echo $j3 + $k3 + $l3 + $m3 + $n3 + $o3; ?> </li>
-          <li style="font-size: 16px; color: blue;">Siswa Download : <?php echo $j4 + $k4 + $l4 + $m4 + $n4 + $o4; ?> </li>
+          <li style="font-size: 16px;">Belum Upload : <?php echo $j1 + $k1 + $l1 + $m1 + $n1 + $o1 + $p1; ?> </li>
+          <li style="font-size: 16px; color: blue;">Sudah Upload : <?php echo $j3 + $k3 + $l3 + $m3 + $n3 + $o3 + $p3; ?> </li>
+          <li style="font-size: 16px; color: blue;">Siswa Download : <?php echo $j4 + $k4 + $l4 + $m4 + $n4 + $o4 + $p4; ?> </li>
         </ol>
 
         <!-- Main content -->
@@ -450,6 +454,78 @@ $set = $this->db->get_where('sekolah', ['id' => 1])->row_array();
                   <div class="box-header">
                     <h4>
                       RAPOR SPEAKING
+                    </h4>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <?php echo $this->session->flashdata('notif') ?>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <td>NO</td>
+                          <td>NIS</td>
+                          <td>Nama Lngkap</td>
+                          <td>Status Upload</td>
+                          <td>Status Download</td>
+                        </tr>
+                      </thead>
+                      <?php
+                      $no = 1;
+                      foreach ($sisw6->result_array() as $ke) { ?>
+                        <tr>
+                          <td><?php echo $no; ?></td>
+                          <td><?php echo $ke['nis']; ?></td>
+                          <td><?php echo $ke['NamaLengkap']; ?></td>
+                          <td><span class="fa fa-exclamation-triangle" style="color:red"> Belum Upload</span></td>
+                          <td><span class="fa fa-exclamation-triangle" style="color:red"> KOSONG</span></td>
+                        </tr>
+                      <?php
+                        $no++;
+                      }
+                      ?>
+                      <?php
+                      $no = 1;
+                      foreach ($fil6->result_array() as $de) { ?>
+                        <tr>
+                          <td><?php echo $no; ?></td>
+                          <td><?php echo $de['nis']; ?></td>
+                          <td><?php echo $de['NamaLengkap']; ?></td>
+                          <td><span class="fa fa-check" style="color:blue"> Berhasil Upload </span></td>
+                          <td>
+                            <?php
+                            if ($de['StatusDownload'] == 'B') {
+                              echo '<span class="fa fa-exclamation-triangle" style="color:red"> <a href="' . base_url('uploadraport/download/') . $de["LinkRaport"] . '">Siswa Belum Download</a> </span>';
+                            } else {
+                              echo '<span class="fa fa-check" style="color:blue"> <a href="' . base_url('uploadraport/download/') . $de["LinkRaport"] . '">di Download Pada ' . $de["jam_download"] . '</a> </span>';
+                            }
+                            ?>
+                          </td>
+                        </tr>
+                      <?php
+                        $no++;
+                      }
+                      ?>
+
+                    </table>
+
+
+                  </div>
+                  <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+              </div>
+              <!-- /.col -->
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="box">
+                <div class="box">
+                  <div class="box-header">
+                    <h4>
+                      RAPOR Madrosatul Quran
                     </h4>
                   </div>
                   <!-- /.box-header -->
