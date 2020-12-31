@@ -53,7 +53,7 @@ class Siswa extends CI_Controller
         force_download($down, NULL);
     }
 
-    function downloadRapor($nis, $link)
+    function downloadRapor($nis, $link, $jenis)
     {
 
         if ($link) {
@@ -62,6 +62,10 @@ class Siswa extends CI_Controller
             if (file_exists($file)) {
                 // get file content
                 $data = file_get_contents($file);
+                date_default_timezone_set('Asia/Jakarta');
+                $tgl = date('Y-m-d H:i:s');
+                $this->db->update($jenis, ['StatusDownload' => 'L', 'jam_download' => $tgl], ['nis' => $this->uri->segment('3')]);
+                $down = "raport/" . $this->uri->segment('4');
                 //force download
                 force_download($link, $data);
             } else {

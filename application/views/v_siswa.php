@@ -75,7 +75,7 @@ $dt7 = $sis7->row_array();
           <img class="profile-img" src="<?= $akademik == 0 ? base_url() . 'assets/images/belum.png' : base_url() . 'assets/images/sudah.png' ?>" alt="">
           <center style="font-weight: bold; font-size: 18px;">RAPOR AKADEMIK <br /></center>
           <br>
-          <center><?= $akademik == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt["nis"] . '/' . $dt['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Rapor </a>' ?></center>
+          <center><?= $akademik == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt["nis"] . '/' . $dt['LinkRaport'] . '/akademik" class="btn btn-lg btn-success btn-block">Download Rapor </a>' ?></center>
         </div>
 
       </div>
@@ -85,7 +85,7 @@ $dt7 = $sis7->row_array();
           <img class="profile-img" src="<?= $aqliyah == 0 ? base_url() . 'assets/images/belum.png' : base_url() . 'assets/images/sudah.png' ?>" alt="">
           <center style="font-weight: bold; font-size: 18px;">RAPOR AQLIYAH <br /></center>
           <br>
-          <center><?= $aqliyah == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt2["nis"] . '/' . $dt2['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
+          <center><?= $aqliyah == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt2["nis"] . '/' . $dt2['LinkRaport'] . '/aqliyah" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
         </div>
 
       </div>
@@ -95,7 +95,7 @@ $dt7 = $sis7->row_array();
           <img class="profile-img" src="<?= $integral == 0 ? base_url() . 'assets/images/belum.png' : base_url() . 'assets/images/sudah.png' ?>" alt="">
           <center style="font-weight: bold; font-size: 18px;">RAPOR INTEGRAL <br /></center>
           <br>
-          <center><?= $integral == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt3["nis"] . '/' . $dt3['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
+          <center><?= $integral == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt3["nis"] . '/' . $dt3['LinkRaport'] . '/integral" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
         </div>
 
       </div>
@@ -109,7 +109,7 @@ $dt7 = $sis7->row_array();
           <img class="profile-img" src="<?= $jismiyah == 0 ? base_url() . 'assets/images/belum.png' : base_url() . 'assets/images/sudah.png' ?>" alt="">
           <center style="font-weight: bold; font-size: 18px;">RAPOR JISMIYAH <br /></center>
           <br>
-          <center><?= $jismiyah == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt4["nis"] . '/' . $dt4['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
+          <center><?= $jismiyah == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt4["nis"] . '/' . $dt4['LinkRaport'] . '/jismiyah" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
         </div>
 
       </div>
@@ -119,7 +119,7 @@ $dt7 = $sis7->row_array();
           <img class="profile-img" src="<?= $speaking == 0 ? base_url() . 'assets/images/belum.png' : base_url() . 'assets/images/sudah.png' ?>" alt="">
           <center style="font-weight: bold; font-size: 18px;">RAPOR SPEAKING <br /></center>
           <br>
-          <center><?= $speaking == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt5["nis"] . '/' . $dt5['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
+          <center><?= $speaking == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt6["nis"] . '/' . $dt6['LinkRaport'] . '/speaking" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
         </div>
 
       </div>
@@ -129,7 +129,7 @@ $dt7 = $sis7->row_array();
           <img class="profile-img" src="<?= $ruhiyah == 0 ? base_url() . 'assets/images/belum.png' : base_url() . 'assets/images/sudah.png' ?>" alt="">
           <center style="font-weight: bold; font-size: 18px;">RAPOR RUHIYAH <br /></center>
           <br>
-          <center><?= $ruhiyah == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt6["nis"] . '/' . $dt6['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
+          <center><?= $ruhiyah == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt5["nis"] . '/' . $dt5['LinkRaport'] . '/ruhiyah" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
         </div>
 
       </div>

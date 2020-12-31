@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Okt 2020 pada 23.24
--- Versi server: 10.4.10-MariaDB
--- Versi PHP: 7.3.12
+-- Waktu pembuatan: 20 Des 2020 pada 05.30
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `file`
+-- Struktur dari tabel `akademik`
 --
 
-CREATE TABLE `file` (
+CREATE TABLE `akademik` (
   `IDLink` int(5) NOT NULL,
   `kode_rapor` int(11) NOT NULL,
   `nis` char(20) NOT NULL,
@@ -40,32 +39,32 @@ CREATE TABLE `file` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `file_rapor2`
+-- Struktur dari tabel `aqliyah`
 --
 
-CREATE TABLE `file_rapor2` (
-  `IDLink` int(11) NOT NULL,
+CREATE TABLE `aqliyah` (
+  `IDLink` int(5) NOT NULL,
   `kode_rapor` int(11) NOT NULL,
   `nis` char(20) NOT NULL,
-  `LinkRaport` varchar(255) NOT NULL,
+  `LinkRaport` varchar(228) NOT NULL,
   `StatusDownload` enum('B','L') NOT NULL,
   `jam_download` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `file_rapor3`
+-- Struktur dari tabel `integral`
 --
 
-CREATE TABLE `file_rapor3` (
-  `IDLink` int(11) NOT NULL,
+CREATE TABLE `integral` (
+  `IDLink` int(5) NOT NULL,
   `kode_rapor` int(11) NOT NULL,
   `nis` char(20) NOT NULL,
-  `LinkRaport` varchar(255) NOT NULL,
+  `LinkRaport` varchar(228) NOT NULL,
   `StatusDownload` enum('B','L') NOT NULL,
   `jam_download` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -84,8 +83,27 @@ CREATE TABLE `jenis_rapor` (
 --
 
 INSERT INTO `jenis_rapor` (`id`, `kode_rapor`, `keterangan`) VALUES
-(1, 1, 'Rapor Akademik'),
-(2, 0, 'Rapoor Speaking');
+(1, 1, 'akademik'),
+(2, 2, 'speaking'),
+(3, 3, 'integral'),
+(4, 4, 'ruhiyah'),
+(5, 5, 'aqliyah'),
+(6, 6, 'jismiyah');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jismiyah`
+--
+
+CREATE TABLE `jismiyah` (
+  `IDLink` int(5) NOT NULL,
+  `kode_rapor` int(11) NOT NULL,
+  `nis` char(20) NOT NULL,
+  `LinkRaport` varchar(228) NOT NULL,
+  `StatusDownload` enum('B','L') NOT NULL,
+  `jam_download` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -108,6 +126,21 @@ INSERT INTO `password_walikelas` (`Kelas`, `Password`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `ruhiyah`
+--
+
+CREATE TABLE `ruhiyah` (
+  `IDLink` int(5) NOT NULL,
+  `kode_rapor` int(11) NOT NULL,
+  `nis` char(20) NOT NULL,
+  `LinkRaport` varchar(228) NOT NULL,
+  `StatusDownload` enum('B','L') NOT NULL,
+  `jam_download` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `sekolah`
 --
 
@@ -125,7 +158,7 @@ CREATE TABLE `sekolah` (
 
 INSERT INTO `sekolah` (`id`, `Judul`, `NamaSekolah`, `AlamatSekolah`, `LogoSekolah`) VALUES
 (1, 'DAFTAR HADIR PENGAMBILAN RAPORT', 'SMK NEGERI 1 BANGSRI', 'Jalan Raya Jepara Bangsri KM. 07 Telp (0291) 787878 email : username@mail.com', 'atas.png'),
-(2, '2020-10-28', '12:34', 'A', 'A');
+(2, '2020-12-16', '16:18', 'A', 'A');
 
 -- --------------------------------------------------------
 
@@ -146,7 +179,23 @@ CREATE TABLE `siswa` (
 
 INSERT INTO `siswa` (`ID`, `nis`, `NamaLengkap`, `Kelas`) VALUES
 (0, '1122', 'Afrizal Setyo Wibisono', 'X TBSM'),
-(1, '2134', 'Abdul Aziz', 'X TBSM');
+(1, '2134', 'Abdul Aziz', 'X TBSM'),
+(2, '2222', 'Ahmad Fathullah', 'X TBSM');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `speaking`
+--
+
+CREATE TABLE `speaking` (
+  `IDLink` int(5) NOT NULL,
+  `kode_rapor` int(11) NOT NULL,
+  `nis` char(20) NOT NULL,
+  `LinkRaport` varchar(228) NOT NULL,
+  `StatusDownload` enum('B','L') NOT NULL,
+  `jam_download` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -176,21 +225,21 @@ INSERT INTO `user` (`id`, `username`, `password`, `nama_user`, `akses`, `created
 --
 
 --
--- Indeks untuk tabel `file`
+-- Indeks untuk tabel `akademik`
 --
-ALTER TABLE `file`
+ALTER TABLE `akademik`
   ADD PRIMARY KEY (`IDLink`);
 
 --
--- Indeks untuk tabel `file_rapor2`
+-- Indeks untuk tabel `aqliyah`
 --
-ALTER TABLE `file_rapor2`
+ALTER TABLE `aqliyah`
   ADD PRIMARY KEY (`IDLink`);
 
 --
--- Indeks untuk tabel `file_rapor3`
+-- Indeks untuk tabel `integral`
 --
-ALTER TABLE `file_rapor3`
+ALTER TABLE `integral`
   ADD PRIMARY KEY (`IDLink`);
 
 --
@@ -200,10 +249,28 @@ ALTER TABLE `jenis_rapor`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `jismiyah`
+--
+ALTER TABLE `jismiyah`
+  ADD PRIMARY KEY (`IDLink`);
+
+--
+-- Indeks untuk tabel `ruhiyah`
+--
+ALTER TABLE `ruhiyah`
+  ADD PRIMARY KEY (`IDLink`);
+
+--
 -- Indeks untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indeks untuk tabel `speaking`
+--
+ALTER TABLE `speaking`
+  ADD PRIMARY KEY (`IDLink`);
 
 --
 -- Indeks untuk tabel `user`
@@ -217,28 +284,46 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT untuk tabel `file`
+-- AUTO_INCREMENT untuk tabel `akademik`
 --
-ALTER TABLE `file`
+ALTER TABLE `akademik`
+  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT untuk tabel `aqliyah`
+--
+ALTER TABLE `aqliyah`
+  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `integral`
+--
+ALTER TABLE `integral`
   MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `file_rapor2`
---
-ALTER TABLE `file_rapor2`
-  MODIFY `IDLink` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `file_rapor3`
---
-ALTER TABLE `file_rapor3`
-  MODIFY `IDLink` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `jenis_rapor`
 --
 ALTER TABLE `jenis_rapor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `jismiyah`
+--
+ALTER TABLE `jismiyah`
+  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `ruhiyah`
+--
+ALTER TABLE `ruhiyah`
+  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `speaking`
+--
+ALTER TABLE `speaking`
+  MODIFY `IDLink` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
