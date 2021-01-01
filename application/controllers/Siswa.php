@@ -34,6 +34,7 @@ class Siswa extends CI_Controller
         $data['quran'] =  $data['sis7']->num_rows();
 
 
+
         $this->load->view('v_siswa', $data);
     }
 
