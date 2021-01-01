@@ -140,7 +140,7 @@ $dt7 = $sis7->row_array();
           <img class="profile-img" src="<?= $quran == 0 ? base_url() . 'assets/images/belum.png' : base_url() . 'assets/images/sudah.png' ?>" alt="">
           <center style="font-weight: bold; font-size: 18px;">RAPOR MADROSATUL QURAN <br /></center>
           <br>
-          <center><?= $quran == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt7["nis"] . '/' . $dt7['LinkRaport'] . '" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
+          <center><?= $quran == 0 ? '<button class="btn btn-danger disabled">Belum di Unggah</button> ' : '<a href= "' . base_url() . 'Siswa/downloadRapor/' . $dt7["nis"] . '/' . $dt7['LinkRaport'] . '/quran" class="btn btn-lg btn-success btn-block">Download Rapor</a>' ?></center>
         </div>
 
       </div>
